@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class PickType extends StatelessWidget {
   late final PageController controller;
-  PickType(this.controller);
+  late final Function(String) setType;
+  PickType(this.controller, this.setType);
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +20,35 @@ class PickType extends StatelessWidget {
             onPressed: () {
               controller.nextPage(
                   duration: Duration(milliseconds: 500), curve: Curves.ease);
-              print('hi');
+              setType('vaccinated');
             },
           ),
           SignUpButton(
             title: 'Sign up as Volunteer',
             icon: Icons.person,
-            onPressed: () {},
+            onPressed: () {
+              controller.nextPage(
+                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+              setType('volunteer');
+            },
           ),
           SignUpButton(
             title: 'Sign up as Healthcare Worker',
             icon: Icons.medical_services,
-            onPressed: () {},
+            onPressed: () {
+              controller.nextPage(
+                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+              setType('healthcare');
+            },
           ),
           SignUpButton(
             title: 'Sign up as Company',
             icon: Icons.business,
-            onPressed: () {},
+            onPressed: () {
+              controller.nextPage(
+                  duration: Duration(milliseconds: 500), curve: Curves.ease);
+              setType('company');
+            },
           ),
         ],
       ),

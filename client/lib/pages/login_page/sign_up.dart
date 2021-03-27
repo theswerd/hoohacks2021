@@ -2,10 +2,12 @@ import 'package:client/components/button.dart';
 import 'package:client/components/custom_text_field.dart';
 import 'package:client/components/spaced_row.dart';
 import 'package:client/components/themed_text.dart';
-import 'package:client/global/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SignUpComponent extends StatelessWidget {
+  late final String type;
+  SignUpComponent(this.type);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,6 +28,9 @@ class SignUpComponent extends StatelessWidget {
             CustomTextField(
               labelText: 'Password',
             ),
+            CustomTextField(
+              labelText: 'Confirm Password',
+            ),
             SizedBox(
               width: double.infinity,
               height: 70,
@@ -36,7 +41,10 @@ class SignUpComponent extends StatelessWidget {
                   Container(),
                   Button(
                     'Sign Up',
-                    onPressed: () => Navigator.pushNamed(context, '/home'),
+                    onPressed: () {
+                      print(type);
+                      // Navigator.pushNamed(context, '/home');
+                    },
                   ),
                 ),
               ),

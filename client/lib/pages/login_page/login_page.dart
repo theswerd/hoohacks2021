@@ -12,13 +12,10 @@ class _LoginPageState extends State<LoginPage> {
   late final PageController controller;
   late String type;
 
-  set setType(int i) {
-    type = i.toString();
-  }
-
   @override
   void initState() {
     controller = new PageController(initialPage: 0);
+    type = 'N/A';
     super.initState();
   }
 
@@ -37,8 +34,9 @@ class _LoginPageState extends State<LoginPage> {
                 controller: controller,
                 children: <Widget>[
                   LoginComponent(controller),
-                  PickType(controller),
-                  SignUpComponent(),
+                  PickType(controller,
+                      (String _type) => setState(() => type = _type)),
+                  SignUpComponent(type),
                 ],
               ),
             ),
