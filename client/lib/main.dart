@@ -1,4 +1,5 @@
 import 'package:client/global/app_theme.dart';
+import 'package:client/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/homePage/home_page.dart';
@@ -8,21 +9,32 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: AppTheme.backgroundLighGray,
         cardTheme: CardTheme(
           elevation: 0,
+          color: Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: AppTheme.backgroundLighGray)),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
         ),
       ),
-      home: HomePage(),
+      initialRoute: '/login',
+      routes: {
+        '/home': (context) => HomePage(),
+        '/login': (context) => LoginPage(),
+      },
     );
   }
 }

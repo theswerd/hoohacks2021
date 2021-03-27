@@ -8,7 +8,7 @@ class Button extends StatelessWidget {
   final Style style;
   final ButtonStyle buttonStyleOverides;
   final TextStyle textStyleOverides;
-  final Color? color;
+  final Color color;
 
   Button(
     this.text, {
@@ -16,59 +16,27 @@ class Button extends StatelessWidget {
     required this.onPressed,
     this.buttonStyleOverides = const ButtonStyle(),
     this.textStyleOverides = const TextStyle(),
-    this.color,
+    this.color = AppTheme.primary,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: ThemedText(
-        text,
-        type: Type.button,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+        child: ThemedText(
+          text,
+          type: Type.button,
+        ),
       ),
       onPressed: onPressed as void Function()?,
       style: buttonStyleOverides.merge(
         TextButton.styleFrom(
-          backgroundColor: color ?? backgroundColor,
+          backgroundColor: color,
           padding: EdgeInsets.all(12),
-          shape: shape,
         ),
       ),
     );
-  }
-
-  Color get backgroundColor {
-    switch (style) {
-      case Style.Primary:
-        return Colors.black;
-      case Style.Secondary:
-        return AppTheme.primary;
-      default:
-        return AppTheme.primary;
-    }
-  }
-
-  OutlinedBorder get shape {
-    switch (style) {
-      case Style.Primary:
-        return RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            16,
-          ),
-        );
-      case Style.Secondary:
-        return RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            16,
-          ),
-        );
-      default:
-        return RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            16,
-          ),
-        );
-    }
   }
 }
 
