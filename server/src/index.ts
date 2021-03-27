@@ -38,6 +38,29 @@ let start = async () => {
       }
     );
   });
+  app.post("/signup", (req, res) => {
+    console.log('REQ BODY', req.body)
+    client.query(
+      "SELECT id FROM Users WHERE username = $1 AND password = $2 LIMIT 1",
+      [req.body.username, req.body.password],
+      (err, dbres) => {
+        if (err) {
+          res.status(501).send({
+            err: err,
+            message: "We had a database error 😭",
+            body: req.body
+          });
+        } else {
+          if(dbres.rowCount != 1){
+            res.status(403).send('Login Failed')
+
+          }else{
+          res.status(200).send(dbres.rows[0]);
+          }
+        }
+      }
+    );
+  });
 
   app.listen(port, "0.0.0.0", () => {
     console.log("Running at http://0.0.0.0" + `:${port} ` + Date());
