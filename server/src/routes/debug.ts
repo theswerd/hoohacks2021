@@ -4,7 +4,7 @@ export default (): Application => {
   const app = express();
 
   app.get("/", (_req, res) => {
-    res.send("Welcome to MyShot");
+    res.send("Welcome to MyShot🌟");
   });
 
   app.get("/status", (_req, res) => {
