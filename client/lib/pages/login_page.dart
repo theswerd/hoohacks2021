@@ -50,7 +50,8 @@ class LoginPage extends StatelessWidget {
                                 'Sign Up',
                                 color: AppTheme.primary,
                               ),
-                              onPressed: () {},
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, '/signUp'),
                             ),
                             Button(
                               'Sign In',
