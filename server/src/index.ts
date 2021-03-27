@@ -38,7 +38,7 @@ let start = async () => {
       }
     );
   });
-  app.post("/signup", (req, res) => {
+  app.post("/signin", (req, res) => {
     console.log('REQ BODY', req.body)
     client.query(
       "SELECT id FROM Users WHERE username = $1 AND password = $2 LIMIT 1",
