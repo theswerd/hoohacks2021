@@ -7,7 +7,9 @@ on:
 
 jobs:
   uploadToAppEngine:
+    
     runs-on: ubuntu-20.04
+    
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -15,8 +17,10 @@ jobs:
           node-version: "12"
       - name: Install Dependencies
         run: npm install
+        working-directory: server
       - name: Build app
         run: npm run build
+        working-directory: server
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
@@ -26,4 +30,5 @@ jobs:
       - name: Use gcloud CLI
         run: gcloud info
       - name: Deploy
+        working-directory: server
         run: gcloud app deploy
