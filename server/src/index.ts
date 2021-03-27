@@ -21,6 +21,7 @@ let start = async () => {
 
   app.use("/", debug());
   app.post("/signup", (req, res) => {
+    console.log('REQ BODY', req.body)
     client.query(
       "INSERT INTO Users (username, password, type, photoUrl) VALUES ($1, $2, $3, $4) RETURNING id",
       [req.body.username, req.body.password, req.body.type, "https://media-exp1.licdn.com/dms/image/C5603AQHjTGI5E6C-jA/profile-displayphoto-shrink_400_400/0/1574749440663?e=1622073600&v=beta&t=7IbOHRZe5S6CGxCg5tpB7VXoi1lc9kyd39AhlTjoQzE"],
@@ -29,6 +30,7 @@ let start = async () => {
           res.status(501).send({
             err: err,
             message: "We had a database error 😭",
+            body: req.body
           });
         } else {
           res.status(200).send(dbres.rows);
