@@ -43,7 +43,7 @@ class SignUpComponent extends StatelessWidget {
                     'Sign Up',
                     onPressed: () {
                       print(type);
-                      // Navigator.pushNamed(context, '/home');
+                      Navigator.pushNamed(context, '/home');
                     },
                   ),
                 ),
