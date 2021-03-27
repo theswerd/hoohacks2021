@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import debug from "./routes/debug";
 
 
 const app = express();
+app.use("/", debug());
 
-app.get('/',(req, res)=>res.send('home'))
-app.get('/status',(req, res)=>res.send('status'))
-app.get('/time',(req, res)=>res.send(Date()))
+
 
 const port = ((process.env.PORT as unknown) as number) ?? 8080;
 app.listen(port, "0.0.0.0", () => {
