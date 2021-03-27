@@ -1,0 +1,2 @@
+DROP TABLE Offers;
+DROP TABLE Users;

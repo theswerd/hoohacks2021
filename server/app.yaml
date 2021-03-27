@@ -1,1 +1,8 @@
 runtime: nodejs12
+
+env_variables:
+  PGHOST: '35.236.39.48'
+  PGUSER: 'postgres'
+  PGDATABASE: 'myshot'
+  PGPASSWORD: 'gGmemvqn4ufqs33G'
+  PGPORT: 5432
