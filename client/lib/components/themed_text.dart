@@ -63,7 +63,7 @@ TextStyle themedTextStyle(Type type) {
     case Type.button:
       return TextStyle(
         color: AppTheme.buttonText,
-        fontSize: 22,
+        fontSize: 18,
       );
     default:
       return TextStyle();

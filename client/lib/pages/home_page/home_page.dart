@@ -4,7 +4,7 @@ import 'package:client/components/themed_text.dart';
 import 'package:client/global/app_theme.dart';
 import 'package:client/global/fake_data.dart';
 import 'package:client/models/offer.dart';
-import 'package:client/pages/homePage/offer_tile.dart';
+import 'package:client/pages/home_page/offer_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/header.dart';
