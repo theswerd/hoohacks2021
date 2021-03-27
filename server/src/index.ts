@@ -8,6 +8,8 @@ console.log('BEGIN');
 const port = ((process.env.PORT as unknown) as number) ?? 8080;
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded());
 console.log('BEGIN 2');
 
 let start = async () => {
