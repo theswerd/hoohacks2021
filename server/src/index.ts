@@ -3,7 +3,6 @@ dotenv.config();
 import express from "express";
 import debug from "./routes/debug";
 import { Client } from "pg";
-import e from "express";
 
 const port = ((process.env.PORT as unknown) as number) ?? 8080;
 
