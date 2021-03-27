@@ -1,5 +1,6 @@
 class Offer {
-  late final String name, description, photoURL, usesLeft;
+  late final String name, description, photoURL;
+  late final int usesLeft;
 
   Offer({
     required this.name,
