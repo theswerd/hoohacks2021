@@ -13,4 +13,8 @@ CREATE TABLE OFFER(
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     photoUrl TEXT,
+    usesLeft NUMBER DEFAULT 0,
+    frontlineWorkers BOOLEAN DEFAULT TRUE,
+    vacinnated BOOLEAN DEFAULT TRUE,
+    volunteers BOOLEAN DEFAULT TRUE
 );
