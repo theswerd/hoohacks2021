@@ -1,6 +1,6 @@
 runtime: nodejs12
 
-env:
+env_variables:
   PGHOST: '35.235.75.81'
   PGUSER: 'postgres'
   PGPASSWORD: 'gGmemvqn4ufqs33G'
