@@ -3,12 +3,12 @@ import 'package:client/global/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
-  final String text;
+  final String? text;
   final bool showBack;
   final Color color;
 
-  Header(
-    this.text, {
+  Header({
+    this.text,
     this.showBack = false,
     this.color = AppTheme.primary,
   });
@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
             )
           : null,
       title: ThemedText(
-        text,
+        text ?? '',
         type: Type.h1,
         color: color,
       ),

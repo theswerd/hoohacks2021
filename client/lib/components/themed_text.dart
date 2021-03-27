@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ThemedText extends StatelessWidget {
   final Type type;
-  final String text;
+  final String? text;
   final TextAlign textAlign;
-  final Color color;
+  final Color? color;
 
   const ThemedText(
     this.text, {
@@ -17,7 +17,7 @@ class ThemedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       textAlign: textAlign,
       style: themedTextStyle(
         type,

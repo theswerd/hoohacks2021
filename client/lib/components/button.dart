@@ -8,12 +8,12 @@ class Button extends StatelessWidget {
   final Style style;
   final ButtonStyle buttonStyleOverides;
   final TextStyle textStyleOverides;
-  final Color color;
+  final Color? color;
 
   Button(
     this.text, {
     this.style = Style.Primary,
-    @required this.onPressed,
+    required this.onPressed,
     this.buttonStyleOverides = const ButtonStyle(),
     this.textStyleOverides = const TextStyle(),
     this.color,
@@ -26,7 +26,7 @@ class Button extends StatelessWidget {
         text,
         type: Type.button,
       ),
-      onPressed: onPressed,
+      onPressed: onPressed as void Function()?,
       style: buttonStyleOverides.merge(
         TextButton.styleFrom(
           backgroundColor: color ?? backgroundColor,

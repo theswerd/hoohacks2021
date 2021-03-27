@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String labelText;
-  final Widget trailing;
-  final void Function(String) onSubmit, onChanged;
+  final TextEditingController? controller;
+  final String? labelText;
+  final Widget? trailing;
+  final void Function(String)? onSubmit, onChanged;
 
   CustomTextField({
     this.labelText,
