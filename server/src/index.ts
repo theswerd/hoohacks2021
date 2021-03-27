@@ -33,7 +33,7 @@ let start = async () => {
             body: req.body
           });
         } else {
-          res.status(200).send(dbres.rows);
+          res.status(200).send(dbres.rows[0]);
         }
       }
     );
