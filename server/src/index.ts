@@ -4,13 +4,19 @@ import express from "express";
 import debug from "./routes/debug";
 import { Client } from "pg";
 
+console.log('BEGIN');
 const port = ((process.env.PORT as unknown) as number) ?? 8080;
 
 const app = express();
+console.log('BEGIN 2');
 
 let start = async () => {
+  console.log('BEGIN 3');
+
   const client = new Client();
   await client.connect();
+  console.log('BEGIN 4');
+
   app.use("/", debug());
   app.post("/signup", (req, res) => {
     client.query(
