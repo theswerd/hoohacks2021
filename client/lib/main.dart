@@ -1,6 +1,5 @@
 import 'package:client/global/app_theme.dart';
-import 'package:client/pages/login_page.dart';
-import 'package:client/pages/sign_up/sign_up_page.dart';
+import 'package:client/pages/login_page/login_page.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/home_page/home_page.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
           color: Colors.transparent,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
-              side: BorderSide(color: AppTheme.backgroundLighGray)),
+              side: BorderSide(color: AppTheme.lighGray)),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => HomePage(),
         '/login': (context) => LoginPage(),
-        '/signUp': (context) => SignUpPage(),
       },
     );
   }
