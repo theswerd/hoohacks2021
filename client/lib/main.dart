@@ -1,6 +1,7 @@
+import 'package:client/global/app_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/homePage/homePage.dart';
+import 'pages/homePage/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,10 +14,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          cardTheme: CardTheme(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)))),
+        scaffoldBackgroundColor: AppTheme.backgroundLighGray,
+        cardTheme: CardTheme(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
       home: HomePage(),
     );
   }
