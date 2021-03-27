@@ -1,1 +1,7 @@
 runtime: nodejs12
+
+env:
+  PGHOST: '35.235.75.81'
+  PGUSER: 'postgres'
+  PGPASSWORD: 'gGmemvqn4ufqs33G'
+  PGPORT: 5432
