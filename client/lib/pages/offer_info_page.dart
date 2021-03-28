@@ -21,10 +21,11 @@ class OfferInfoPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
+          Image.asset(
+            offer.photoURL,
             height: 300,
             width: double.infinity,
-            child: Placeholder(),
+            fit: BoxFit.cover,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

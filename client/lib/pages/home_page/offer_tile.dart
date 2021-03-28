@@ -22,7 +22,12 @@ class OfferTile extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(4),
                     bottomRight: Radius.circular(4)),
-                child: SizedBox(width: 150, child: Placeholder()),
+                child: Image.asset(
+                  offer.photoURL,
+                  width: 150,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(height: 12),
               Padding(

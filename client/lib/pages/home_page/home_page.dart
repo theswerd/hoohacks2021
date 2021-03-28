@@ -8,19 +8,6 @@ import 'package:client/pages/home_page/offer_tile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Offer> offers = List.generate(
-    30,
-    (i) {
-      int i = Random().nextInt(names.length);
-      return new Offer(
-        name: names[i],
-        description: 'Come in for a free ${item[i]}!',
-        photoURL: 'url',
-        usesLeft: Random().nextInt(20),
-      );
-    },
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,15 +35,6 @@ class HomePage extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (c, i) => OfferTile(offers[i]),
                 childCount: offers.length,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(top: 32),
-              child: Container(
-                color: AppTheme.primary,
-                child: ThemedText('Hello'),
               ),
             ),
           ),
