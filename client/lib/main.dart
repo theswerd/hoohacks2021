@@ -1,7 +1,9 @@
 import 'package:client/global/app_theme.dart';
 import 'package:client/pages/login_page/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'models/session.dart';
 import 'pages/home_page/home_page.dart';
 
 void main() {
@@ -30,10 +32,17 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      builder: (c, w) => Provider(
+        create: (c) => Session(),
+        builder: (c, w) => w!,
+        child: w,
+      ),
       initialRoute: '/login',
       routes: {
         '/home': (context) => HomePage(),
-        '/login': (context) => LoginPage(),
+        '/login': (context) => LoginPage(
+              Provider.of<Session>(context),
+            ),
       },
     );
   }

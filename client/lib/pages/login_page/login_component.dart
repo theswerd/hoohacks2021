@@ -1,13 +1,32 @@
+import 'dart:convert';
+
 import 'package:client/components/button.dart';
 import 'package:client/components/custom_text_field.dart';
 import 'package:client/components/spaced_row.dart';
 import 'package:client/components/themed_text.dart';
 import 'package:client/global/app_theme.dart';
+import 'package:client/models/session.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class LoginComponent extends StatelessWidget {
+class LoginComponent extends StatefulWidget {
   late final PageController controller;
+  late final Session session;
   LoginComponent(this.controller);
+
+  @override
+  _LoginComponentState createState() => _LoginComponentState();
+}
+
+class _LoginComponentState extends State<LoginComponent> {
+  late String username, password;
+
+  @override
+  void initState() {
+    username = '';
+    password = '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +48,11 @@ class LoginComponent extends StatelessWidget {
           children: [
             CustomTextField(
               labelText: 'Username',
+              onChanged: (v) => username = v,
             ),
             CustomTextField(
               labelText: 'Password',
+              onChanged: (v) => password = v,
             ),
             SizedBox(
               width: double.infinity,
@@ -45,13 +66,13 @@ class LoginComponent extends StatelessWidget {
                       'Sign Up',
                       color: AppTheme.primary,
                     ),
-                    onPressed: () => controller.nextPage(
+                    onPressed: () => widget.controller.nextPage(
                         duration: Duration(milliseconds: 500),
                         curve: Curves.ease),
                   ),
                   Button(
                     'Sign In',
-                    onPressed: () => Navigator.pushNamed(context, '/home'),
+                    onPressed: () => login(context),
                   ),
                 ),
               ),
@@ -60,5 +81,31 @@ class LoginComponent extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> login(BuildContext context) {
+    return http
+        .post(
+      Uri.parse('https://hoohacks-308916.wl.r.appspot.com/signin'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+          <String, String>{'username': username, 'password': password}),
+    )
+        .then((value) {
+      switch (value.statusCode) {
+        case 200:
+          print('WE LOGGING INNNN');
+          widget.session.fromSetCookie(value.headers['set-cookie']!);
+          print('WE LOGGING INNNN 2');
+
+          Navigator.of(context).pushNamed('/home');
+          break;
+        default:
+          print(value.body);
+          print(value.statusCode);
+      }
+    });
   }
 }
