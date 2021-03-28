@@ -26,7 +26,5 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - uses: google-github-actions/upload-cloud-storage@main
-        with:
-          path: /client/build/
-          destination: myshot_web
+      - run: gsutil cp -r client/build/web/** gs://myshot_web
+
