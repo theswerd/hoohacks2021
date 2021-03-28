@@ -7,48 +7,60 @@ import 'package:client/models/offer.dart';
 import 'package:client/pages/home_page/offer_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/header.dart';
-
 class HomePage extends StatelessWidget {
   final List<Offer> offers = List.generate(
-      30,
-      (i) => new Offer(
-          name: names[Random().nextInt(names.length)],
-          description: 'Come in for a free hug!',
-          photoURL: 'url',
-          usesLeft: Random().nextInt(20)));
+    30,
+    (i) {
+      int i = Random().nextInt(names.length);
+      return new Offer(
+        name: names[i],
+        description: 'Come in for a free ${item[i]}!',
+        photoURL: 'url',
+        usesLeft: Random().nextInt(20),
+      );
+    },
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: CustomScrollView(
-          slivers: [
-            Header(),
-            SliverGrid(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: ThemedText(
+            'Adhering to Gravity',
+            type: Type.h1,
+          ),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            sliver: SliverGrid(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 300,
+                maxCrossAxisExtent: 600,
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
-                // childAspectRatio: 4.0,
+                childAspectRatio: 4,
               ),
               delegate: SliverChildBuilderDelegate(
                 (c, i) => OfferTile(offers[i]),
                 childCount: offers.length,
               ),
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.only(top: 32),
-                child: Container(
-                  color: AppTheme.primary,
-                  child: ThemedText('Hello'),
-                ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(top: 32),
+              child: Container(
+                color: AppTheme.primary,
+                child: ThemedText('Hello'),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
