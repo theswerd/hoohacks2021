@@ -27,5 +27,5 @@ jobs:
           export_default_credentials: true
       - uses: google-github-actions/upload-cloud-storage@main
         with:
-          path: /path/to/folder
-          destination: bucket-name
+          path: /client/build/web
+          destination: myshot_web
