@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
+import cors from "cors";
+
 import debug from "./routes/debug";
 import { Client } from "pg";
 
@@ -10,6 +12,8 @@ const port = ((process.env.PORT as unknown) as number) ?? 8080;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cors());
+
 console.log("BEGIN 2");
 
 let start = async () => {
@@ -60,6 +64,23 @@ let start = async () => {
       }
     );
   });
+
+  app.get("/offers", (req, res) => {
+    if ((req.headers.authorization?.length ?? 0) > 0) {
+      client.query("SELECT * FROM OFFERS", (err, dbres) => {
+        if (err) {
+          res.status(501).send(err);
+        } else {
+          res.send(dbres.rows);
+        }
+      });
+    } else {
+      res
+        .status(501)
+        .send("Please send your user id in the authorization header.");
+    }
+  });
+
   app.post("/offer", (req, res) => {
     client.query(
       "INSERT INTO Offers (name, description, photoUrl, usesLeft, frontlineWorkers, vacinnated, volunteers) RETURNING ID",

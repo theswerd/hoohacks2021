@@ -1,0 +1,31 @@
+name: Deploy WEB
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  FLUTTER_VERSION: "1.22.1"
+
+jobs:
+  uploadToStorage:
+    
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - run: git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION _flutter
+      - run: echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
+      - run: flutter doctor -v
+      - run: flutter pub get
+        working-directory: ./client
+      - run: flutter build web
+        working-directory: ./client
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - uses: google-github-actions/upload-cloud-storage@main
+        with:
+          path: /path/to/folder
+          destination: bucket-name
