@@ -1,5 +1,6 @@
 import 'package:client/components/themed_text.dart';
 import 'package:client/models/offer.dart';
+import 'package:client/pages/offer_info_page.dart';
 import 'package:flutter/material.dart';
 
 class OfferTile extends StatelessWidget {
@@ -12,20 +13,16 @@ class OfferTile extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: TextButton(
-          onPressed: () {},
-          child: Column(
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (c) => OfferInfoPage(offer))),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(4),
                     bottomRight: Radius.circular(4)),
-                child: Image.asset(
-                  'assets/background.png',
-                  height: 150,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                child: SizedBox(width: 150, child: Placeholder()),
               ),
               SizedBox(height: 12),
               Padding(

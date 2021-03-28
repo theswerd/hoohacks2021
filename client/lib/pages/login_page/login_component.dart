@@ -72,7 +72,10 @@ class _LoginComponentState extends State<LoginComponent> {
                   ),
                   Button(
                     'Sign In',
-                    onPressed: () => login(context),
+                    onPressed: () {
+                      print('login in');
+                      login(context);
+                    },
                   ),
                 ),
               ),
@@ -94,6 +97,7 @@ class _LoginComponentState extends State<LoginComponent> {
           <String, String>{'username': username, 'password': password}),
     )
         .then((value) {
+      print(value.statusCode);
       switch (value.statusCode) {
         case 200:
           print('WE LOGGING INNNN');
