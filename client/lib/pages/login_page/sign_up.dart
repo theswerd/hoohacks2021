@@ -75,8 +75,9 @@ class _SignUpComponentState extends State<SignUpComponent> {
                     'Sign Up',
                     onPressed: () {
                       print(widget.type);
-                      if (password.text == password2.text) signup();
-                      // Navigator.pushNamed(context, '/home');
+                      if (password.text == password2.text)
+                        // signup();
+                        Navigator.pushNamed(context, '/home');
                     },
                   ),
                 ),

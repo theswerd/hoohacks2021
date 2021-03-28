@@ -39,7 +39,7 @@ class _LoginComponentState extends State<LoginComponent> {
               child: SizedBox(
                 width: 150,
                 height: 150,
-                child: Placeholder(),
+                child: Image.asset('assets/logo_white_background.png'),
               ),
             ),
           ),
@@ -74,7 +74,8 @@ class _LoginComponentState extends State<LoginComponent> {
                     'Sign In',
                     onPressed: () {
                       print('login in');
-                      login(context);
+                      // login(context);
+                      Navigator.of(context).pushNamed('/home');
                     },
                   ),
                 ),
