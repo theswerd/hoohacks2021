@@ -14,41 +14,42 @@ class HomePage extends StatelessWidget {
       30,
       (i) => new Offer(
           name: names[Random().nextInt(names.length)],
-          description: 'Come in a a free hug!',
+          description: 'Come in for a free hug!',
           photoURL: 'url',
           usesLeft: Random().nextInt(20)));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: CustomScrollView(
-        slivers: [
-          Header(),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              // childAspectRatio: 4.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (c, i) => OfferTile(offers[i]),
-              childCount: offers.length,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.only(top: 32),
-              child: Container(
-                color: AppTheme.primary,
-                child: ThemedText('Hello'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: CustomScrollView(
+          slivers: [
+            Header(),
+            SliverGrid(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 300,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                // childAspectRatio: 4.0,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (c, i) => OfferTile(offers[i]),
+                childCount: offers.length,
               ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(top: 32),
+                child: Container(
+                  color: AppTheme.primary,
+                  child: ThemedText('Hello'),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

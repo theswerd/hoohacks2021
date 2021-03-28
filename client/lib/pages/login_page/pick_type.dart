@@ -13,7 +13,17 @@ class PickType extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          IconButton(
+            onPressed: () => controller.previousPage(
+                duration: Duration(milliseconds: 500), curve: Curves.ease),
+            icon: Icon(
+              Icons.chevron_left,
+              color: AppTheme.primary,
+            ),
+          ),
+          SizedBox(height: 16),
           SignUpButton(
             title: 'Sign up as Vaccinated',
             icon: Icons.sentiment_very_satisfied,

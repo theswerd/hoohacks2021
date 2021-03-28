@@ -1,9 +1,13 @@
+import 'package:client/models/session.dart';
 import 'package:client/pages/login_page/login_component.dart';
 import 'package:client/pages/login_page/pick_type.dart';
 import 'package:client/pages/login_page/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  final Session session;
+  LoginPage(this.session);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -29,14 +33,18 @@ class _LoginPageState extends State<LoginPage> {
           child: Card(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: PageView(
-                scrollDirection: Axis.horizontal,
-                controller: controller,
-                children: <Widget>[
-                  LoginComponent(controller),
-                  PickType(controller,
-                      (String _type) => setState(() => type = _type)),
-                  SignUpComponent(type),
+              child: Stack(
+                children: [
+                  PageView(
+                    scrollDirection: Axis.horizontal,
+                    controller: controller,
+                    children: <Widget>[
+                      LoginComponent(controller),
+                      PickType(controller,
+                          (String _type) => setState(() => type = _type)),
+                      SignUpComponent(type, widget.session, controller),
+                    ],
+                  ),
                 ],
               ),
             ),
