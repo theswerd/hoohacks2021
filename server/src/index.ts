@@ -12,8 +12,10 @@ const port = ((process.env.PORT as unknown) as number) ?? 8080;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors());
-
+//app.use(cors());
+app.all('*', function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+});
 console.log("BEGIN 2");
 
 let start = async () => {
